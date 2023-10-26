@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./le.css">
+
+<style>
+    
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width:100%;
+    height:100vh;
+    margin:0;
+    overflow: hidden;
+    /* display:flex;
+    background-color:rgb(240,96,96); */
+}
+
+
+.game-page, .home-page{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-wrap: wrap;
+    background-color:rgb(119,188,27);
+    background-image:url(./圖片-未去背/bk.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    overflow: hidden;
+    z-index: -3;
+}
+
+.game-page{
+    display:none;
+    /* background-color: lightyellow; */
+    background-image: url(./圖片-未去背/bk.jpg);
+    /* position: relative; */
+}
+
+
+
+.home-two{
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+
+.start, .continue{
+    display:block;
+    width: 150px;
+    height:90px;
+    margin:20px;
+    font-size: 46px;
+    border-radius: 20px;
+    background-color: greenyellow;
+    font-weight: 700;
+    color: darkgreen;
+    z-index: 5;
+    border:5px solid  darkgreen;
+    position: relative;
+   
+}
+
+.continue{
+    display: none;
+}
+
+.start:hover, .continue:hover{
+    transform: scale(0.9);
+    font-size: 42px;
+    background-color: rgb(132, 195, 38);
+}
+
+.start:before{
+    content:"眼濛濛?來個測驗吧！";
+    width:600px;
+    height:100px;
+    color:white;
+    font-size: 60px;
+    /* line-height: 100px; */
+    position: absolute;
+    top:-150px;
+    left:-218px;
+    text-shadow: 3px 3px 1px black;
+}
+
+
+
+
+.box-big{
+    width:520px;
+    height:520px;
+    padding:10px;
+    margin:auto;
+    background-color: white;
+    border-radius: 10px;
+    display:flex;
+    flex-wrap: wrap;
+    box-shadow: 10px 20px 20px rgb(246,229,96);
+    /* box-shadow: 10px 20px 20px rgb(245,197,4); */
+  
+
+}
+
+.end-paste{
+    width:450px;
+    height:500px;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color:darkgreen;
+    font-weight: 700;
+    color:  greenyellow;
+    /* z-index: 5; */
+    border:15px solid   greenyellow;
+    padding: 15px 30px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display:none;
+}
+
+
+.small-p, .score{
+    font-size: 24px;
+    
+}
+.p-span{
+    display: inline-block;
+    width: 350px;
+    font-size: 20px;
+    text-align:justify;
+    margin: 26px 0 10px;
+}
+
+.play-again01{
+    width:120px;
+    height:55px;
+    background-color:darkgreen;
+    font-weight: 700;
+    color:  greenyellow;
+    line-height: 45px;
+    z-index: 20;
+    border:5px solid greenyellow;
+    border-radius: 20px;
+    position: absolute;
+    bottom:30px;
+    right:30px; 
+    font-size: 20px;
+}
+
+.play-again01:hover{
+    transform: scale(0.9);
+    font-size: 22px;
+    
+}
+
+
+
+
+.box{
+    width:250px;
+    height:250px;
+    border:5px solid white;
+    background-color: rgb(255, 17, 0);
+    border-radius: 10px;
+    
+}
+
+
+.answer{
+    opacity: 0.5;
+}
+
+.three-things{
+    margin-right:100px;
+    width:150px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.pause, .give-up, .time-clock, .score-now{
+    display:block;
+    width: 100px;
+    height:80px;
+    margin:20px;
+    font-size: 32px;
+    border-radius: 20px;
+    background-color:darkgreen;
+    font-weight: 700;
+    color:  greenyellow;
+    z-index: 5;
+    border:5px solid   greenyellow;
+
+}
+
+.pause:hover, .give-up:hover{
+    transform: scale(0.9);
+    font-size: 30px;
+}
+
+.time-clock,.score-now{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 18px;
+}
+
+.time-clock  div, .score-now div{
+    width:100%;
+    height: 50%;
+    text-align: center;
+    line-height:32.5px ;
+}
+.time-clock  div:first-child, .score-now div:first-child{
+    border-bottom:2.5px solid greenyellow; 
+}
+
+.timer, .score-number{
+    border-top:2.5px solid greenyellow; 
+    /* border-bottom: 0px; */
+}
+
+
+</style>
+
+
+
+</head>
+<body>
+    <div class="home-page">
+        <div class="top-leaf">
+            <div class="leaf le-1"></div>
+            <div class="leaf le-2" ></div>
+            <div class="leaf le-3"></div>
+            <div class="leaf le-4"></div>
+            <div class="leaf le-5"></div>
+        </div>
+        <div class="home-two ">
+            <div class="leaf2 le-11"></div>
+            <button class="start">開始</button>
+            <button class="continue">繼續</button>
+            <div class="leaf2 le-12"></div>
+        </div>
+        <div class="bottom-leaf">
+            <div class="leaf le-6"></div>
+            <div class="leaf le-7"></div>
+            <div class="leaf le-8"></div>
+            <div class="leaf le-9"></div>
+            <div class="leaf le-10"></div>
+        </div>
+    </div>
+
+
+    <div class="game-page">
+        <div class="box-big"> </div>
+        <div class="end-paste">
+            <p>時間到了！讓我們來瞧瞧你的視力如何！！</p>
+            <div class="score"></div>
+            <p class="small-p"></p> 
+            <div class="p-span"></div>
+            <div class="play-again01">再玩一次</div>
+        </div>
+        <div class="three-things">
+            <div class="score-now">
+                <div>目前得分</div>
+                <div class="score-number"></div>
+            </div>
+            <div class="time-clock">   
+                <div>剩餘時間</div>
+                <div class="timer"></div>
+            </div> 
+            <button class="pause">暫停</button>
+            <button class="give-up">放棄</button>
+        </div>
+    </div>
+ 
+
+
+    <script>
+    
+        start = document.querySelector('.start');
+        continue_2 = document.querySelector('.continue');
+        pause = document.querySelector('.pause');
+        giveUp = document.querySelector('.give-up');
+        gamePage = document.querySelector('.game-page');
+        homePage = document.querySelector('.home-page');
+        endPaste = document.querySelector('.end-paste');
+        playAgain = document.querySelector('.play-again01');
+        score = document.querySelector('.score');
+        scoreNumber = document.querySelector('.score-number');
+        smallP = document.querySelector('.small-p');
+        pSpan = document.querySelector('.p-span');
+        let i =2;
+        let count =0;
+        // console.log( playAgain );
+    
+
+         // setInterval就是每隔一段時間，就自動執行某個函數，
+        // 1秒=1000毫秒
+        let timer = document.querySelector('.timer');
+        timerMachine = setInterval(countDown, 1000);
+        let seconds =10;
+        function countDown(){
+            timer.innerHTML = seconds;
+            seconds--;//seconds=seconds-1;
+            console.log('我好愛寫程式');
+            if (seconds < 0){
+                // 清空計時器
+                clearInterval(timerMachine);
+                // alert('時間到了!');
+                pause.style.display='none';
+                giveUp.style.display='none';
+                boxBig.style.display='none';
+                endPaste.style.display='block';
+                playAgain.style.display='block';
+                seconds=10;
+
+                console.log(count);
+                score.innerHTML=`共答對:${count}題`;
+                // timerMachine = setInterval(countDown, 1000);
+                if(count == 0){
+                    smallP.innerHTML=`你的辨色力: 墨西哥盲魚等級<br>`;
+                    pSpan.innerHTML=`即使他們有眼睛，也看不到太多東西。經過許多代的進化，這魚適應了完全黑暗的生活環境，變成了無眼的品種。`;
+                }else if(count < 5){
+                    smallP.innerHTML=`你的辨色力: 貓咪等級<br>`;
+                    pSpan.innerHTML=`根據科學觀察，貓似乎無法感知人類所能感知的全部顏色。一些科學家認為貓只能看到藍色和灰色，而另一些則認為牠們能看到黃色。`;
+                }else if(count < 10){
+                    smallP.innerHTML=`你的辨色力: 黑猩猩等級<br>`;
+                    pSpan.innerHTML=`和人類一樣，黑猩猩也是三色視覺，這使得它們能夠捕捉到與我們所看到的相同光譜的顏色。`;
+                }else if(count >= 10){
+                    smallP.innerHTML=`你的辨色力:蜂鳥等級<br>`;
+                    pSpan.innerHTML=`鳥類的四色視錐讓牠們能分辨色域較廣的顏色，包括紫外線光譜──例如「紫外綠」（UV-green）和「紫外紅」（UV-red）等顏色。`;
+                }
+
+            }
+        }
+
+
+
+        //開始 
+        start.addEventListener('click',()=>{
+
+            // start.style.display = 'none';
+            clearInterval(timerMachine);
+            timerMachine = setInterval(countDown, 1000);
+            homePage.style.display='none';
+            gamePage.style.display='flex';
+            boxBig.style.display='flex';
+            pause.style.display='block';
+            giveUp.style.display='block';
+            timer.innerHTML ='10';
+            scoreNumber.innerHTML = `  ${count}  `;
+            // playAgain.style.display='none';
+            i=2;
+            text(i);
+            count = 0;
+            
+        })
+
+        // 放棄
+        giveUp.addEventListener('click',()=>{
+            // start.style.display = 'none';
+            
+            homePage.style.display='flex';
+            gamePage.style.display='none';
+            clearInterval(timerMachine);
+            seconds =10;
+            boxBig.innerHTML ='';
+            continue_2.style.display='none';
+            start.style.display='block';
+        })
+
+        // 暫停
+        pause.addEventListener('click',()=>{
+            // start.style.display = 'none';
+            
+            homePage.style.display='flex';
+            gamePage.style.display='none';
+            clearInterval(timerMachine);
+            continue_2.style.display='block';
+            start.style.display='none';
+            
+        })
+        // 繼續
+        continue_2.addEventListener('click',()=>{
+            // start.style.display = 'none';
+            
+            homePage.style.display='none';
+            gamePage.style.display='flex';
+            timerMachine = setInterval(countDown, 1000);
+
+        })
+
+        playAgain.addEventListener('click',()=>{
+            boxBig.innerHTML ='';
+            clearInterval(timerMachine);
+            playAgain.style.display='none';
+            endPaste.style.display='none';
+            homePage.style.display='flex';
+            gamePage.style.display='none';
+            start.style.display='block';
+            continue_2.style.display='none';
+            count = 0;
+
+
+            // i=2;
+            // text(i);
+          
+
+        })
+
+
+
+    // --------------------------------------------------------
+    
+    let boxBig = document.querySelector('.box-big');
+
+
+function text(i){
+
+                let a = i * i 
+            for(let b = 0; b < a ; b++){
+                
+                boxBig.innerHTML = boxBig.innerHTML + `<div class="box"></div>`;
+            }
+            
+                let c = 'box'+ a ;
+                c = document.querySelectorAll('.box');
+
+                let r = Math.floor(Math.random()*255+1); 
+                let g = Math.floor(Math.random()*255+1); 
+                let b = Math.floor(Math.random()*255+1); 
+                let color=`rgb(${r},${g},${b})`;
+
+
+            for(let d = 0; d < a ; d++){
+
+                c[d].style.backgroundColor = color;
+         
+                f = 500 / i;
+              
+                g = f + 'px';
+                
+                c[d].style.width=g ;
+                c[d].style.height=g ;
+            
+                
+            }
+
+                let randomValue = Math.floor( Math.random() * a);
+               
+                c[randomValue].classList.add('answer');
+               
+
+               
+
+                let e = 'answer' + a ;
+                e =  document.querySelector('.answer');
+                e.addEventListener('click', function(){
+                boxBig.innerHTML = '';
+                
+                i++;
+              
+                text(i);
+                count++;
+                
+                scoreNumber.innerHTML = `  ${count}  `;
+
+                })
+            }
+
+
+   
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
